@@ -1,16 +1,15 @@
 <BS>CC = gcc
 CFLAGS = -lncurses
 TARGET = programa
-SOURCES = main.c
+MAIN = main.c
+SOURCES = GetString.c
 OBJECTS = $(SOURCES:.c=.o)
 
 # Regla por defecto que compila y ejecuta, ignorando errores
-all: $(TARGET)
-	-./$(TARGET)
 
 # Compilar el programa
 $(TARGET): $(OBJECTS)
-	$(CC) $(SOURCES) $(CFLAGS) -o $@
+	$(CC) $(MAIN) $(SOURCES) $(CFLAGS) -o $(TARGET)
 
 # Limpiar archivos generados
 clean:
@@ -18,3 +17,4 @@ clean:
 
 # Indica que estas reglas no son archivos
 .PHONY: all clean
+
