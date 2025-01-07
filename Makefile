@@ -1,20 +1,36 @@
-<BS>CC = gcc
-CFLAGS = -lncurses
+# Makefile para compilar el proyecto
+
+# Variables
+CC = gcc
+CFLAGS = -I. -IListas -Ialgoritmos
+LDFLAGS = -lncurses
+OBJDIR = obj
+SRCDIR = .
+BINDIR = bin
 TARGET = programa
-MAIN = main.c
-SOURCES = GetString.c
-OBJECTS = $(SOURCES:.c=.o)
 
-# Regla por defecto que compila y ejecuta, ignorando errores
+# Archivos fuente
+SRCS := $(wildcard $(SRCDIR)/*.c) \
+        $(wildcard $(SRCDIR)/algoritmos/*.c) \
+        $(wildcard $(SRCDIR)/Listas/*.c) \
+        $(wildcard $(SRCDIR)/Comun/*.c) \
+				$(wildcard $(SRCDIR)/Pila/*.c) \
+				$(wildcard $(SRCDIR)/Cola/*.c)
 
-# Compilar el programa
-$(TARGET): $(OBJECTS)
-	$(CC) $(MAIN) $(SOURCES) $(CFLAGS) -o $(TARGET)
+# Archivos objeto
+OBJS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
-# Limpiar archivos generados
+# Reglas
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -rf $(OBJDIR) 
 
-# Indica que estas reglas no son archivos
 .PHONY: all clean
-

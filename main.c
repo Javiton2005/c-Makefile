@@ -1,7 +1,9 @@
-#include "comun.h"
+#include "librerias.h"
 
 void main() {
-
+  
+  char *Extension = ".txt";
+  int TamanoExtension = strlen(Extension)+1;
   FILE *Listado;
   int NumLineas = 0, MaxCaracteresLinea =0, Caracteres=0; 
   char Caracter;
@@ -46,17 +48,33 @@ void main() {
 
   
   printf("Imprimimos las lineas\n");
+
+  LISTA *Lista = CrearLista();
+
   while(fgets(Linea, MaxCaracteresLinea, Listado)!=NULL){
     printf("Archivo: %s", Linea);
+    
+    if(strlen(Linea)>TamanoExtension)
+      Linea[strlen(Linea)-TamanoExtension] = '\0';
+
+    CANCION *Cancion = CrearCancion(Linea);
+    InsertarListaDerecha(Lista, Cancion);
   }
   pclose(Listado); 
+  
+  CANCION *CancionIzquierda = ConsultarListaIzquierda(Lista);
 
+  printf("Cancion Izquierda Nombre: %s\n", CancionIzquierda->Nombre);
+  printf("Cancion Izquierda Artista: %s\n", CancionIzquierda->Artista);
+  printf("Cancion Izquierda Duracion: %s\n", CancionIzquierda->Duracion);
+  printf("Cancion Izquierda Genero: %s\n", CancionIzquierda->Genero);
+  
   printf("Maximo numero de caracteres por linea: %d\n", MaxCaracteresLinea);
   printf("Numero de Lineas: %d\n", NumLineas);
   
   /*while (fgets(fichero, sizeof(fichero), listado)!= NULL){
     printf("Archivo: %s", fichero);
   }*/
+  
 
-  pclose(Listado);
 }
