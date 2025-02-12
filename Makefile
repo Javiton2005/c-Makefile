@@ -2,7 +2,7 @@
 
 # Variables
 CC = gcc
-CFLAGS = -I. -IListas -Ialgoritmos
+CFLAGS = -I. -IListas 
 LDFLAGS = -lncurses
 OBJDIR = obj
 SRCDIR = .
@@ -11,11 +11,13 @@ TARGET = programa
 
 # Archivos fuente
 SRCS := $(wildcard $(SRCDIR)/*.c) \
-        $(wildcard $(SRCDIR)/algoritmos/*.c) \
-        $(wildcard $(SRCDIR)/Listas/*.c) \
-        $(wildcard $(SRCDIR)/Comun/*.c) \
+				$(wildcard $(SRCDIR)/Listas/*.c) \
+				$(wildcard $(SRCDIR)/Comun/*.c) \
 				$(wildcard $(SRCDIR)/Pila/*.c) \
-				$(wildcard $(SRCDIR)/Cola/*.c)
+				$(wildcard $(SRCDIR)/Cola/*.c) \
+				$(wildcard $(SRCDIR)/Pantalla/*.c) \
+				$(wildcard $(SRCDIR)/CrearListaCanciones/*.c) \
+				$(wildcard $(SRCDIR)/Ordenar/*.c)
 
 # Archivos objeto
 OBJS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))

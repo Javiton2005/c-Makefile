@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <termios.h>
+#include <unistd.h>
 // Structuras
 // NODO
 typedef struct _Nodo{
@@ -26,8 +27,16 @@ typedef struct _Cancion{
 #define TRUE 1
 #define FALSE 0
 
+extern struct _Estadisticas {
+  char *Fichero;
+  int NumeroCanciones;
+} Estadisticas;
+
 // Aquí tus declaraciones de funciones
 void GetString(char *);
 CANCION *CrearCancion(char *);
+void InitGlobal();
 
+void restoreInputMode();
+void setInputModeRaw();
 #endif

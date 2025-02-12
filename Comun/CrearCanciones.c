@@ -13,12 +13,14 @@ CANCION *CrearCancion(char *Linea){
 
   CANCION *Cancion = malloc(sizeof(CANCION));
   
-  printf("Crea la cancion\n");
   int index = 0;
   char *output;
   while((output=strsep(&Linea, ";"))!= NULL){    
 
     char *palabra = strdup(output);
+    if(*palabra == '\0')
+      palabra = "??";
+  
     switch (index) {
       case 0:
         Cancion->Nombre = palabra;
@@ -32,11 +34,12 @@ CANCION *CrearCancion(char *Linea){
         Cancion->Duracion = palabra;
         index++;
         break;
-      case 3:
+      case 3: 
         Cancion->Genero = palabra;
         index++;
         break;
     }
   }
+  Estadisticas.NumeroCanciones++;
   return(Cancion);
 }

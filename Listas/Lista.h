@@ -18,6 +18,6 @@ void *BorrarListaDerecha(LISTA *);
 void *BorrarListaIzquierda(LISTA *);
 void *ConsultarListaDerecha(LISTA *);
 void *ConsultarListaIzquierda(LISTA *);
-
+bool BorrarLista(LISTA *);
 
 #endif

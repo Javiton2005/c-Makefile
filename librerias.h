@@ -2,3 +2,6 @@
 #include "./Listas/Lista.h"
 #include "./Cola/Cola.h"
 #include "./Pila/Pila.h"
+#include "./Pantalla/Pantalla.h"
+#include "./Ordenar/Ordenar.h"
+#include "./CrearListaCanciones/CrearListaCanciones.h"

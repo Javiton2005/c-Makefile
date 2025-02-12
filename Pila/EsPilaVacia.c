@@ -1,7 +1,6 @@
 #include "Pila.h"
 
 bool EsPilaVacia(PILA *Pila){
-  if(Pila == NULL) return (NULL);
 
-  return(Pila->Contenido == NULL);
+  return((Pila==NULL)||(Pila->Contenido == NULL));
 }

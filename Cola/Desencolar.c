@@ -12,5 +12,5 @@ void *Desencolar(COLA *Cola){
 
   if(Cola->Cabecera == NULL) Cola->Final = NULL;
 
-  return(Cola);
+  return(Devolver);
 }
